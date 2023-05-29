@@ -4,8 +4,10 @@ import requests
 import re
 import json
 import time
+import subprocess
 
-trovo_streams = []
+
+SLEEP_TIME = 10
 
 
 def scrape_streams():
@@ -47,17 +49,6 @@ def scrape_streams():
         return streams
 
 
-def update_trovo_streams():
-    global trovo_streams
-    trovo_streams = scrape_streams()
-
-
-def get_streams():
-    global trovo_streams
-    update_trovo_streams()
-    return trovo_streams
-
-
 def create_commit(repository, commit_message, access_token):
     url = f"https://api.github.com/repos/{repository}/git/commits"
     headers = {
@@ -76,3 +67,40 @@ def create_commit(repository, commit_message, access_token):
     else:
         print(f"Failed to create commit. Error: {response.text}")
 
+
+def run_cmd(command):
+    try:
+        result = subprocess.run(command, shell=True,
+                                capture_output=True, text=True)
+
+        if result.returncode == 0:
+            print("Command executed successfully.")
+            print("Output:")
+            print(result.stdout)
+        else:
+            print("Command execution failed.")
+            print("Error:")
+            print(result.stderr)
+
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+
+
+count = 0
+
+while True:
+    start = time.time()
+
+    # streams = scrape_streams()
+    print(f'streams updated {count}')
+
+    # with open("streams.json", "w", encoding='utf-8') as f:
+    # json.dump(streams, f, indent=4)
+
+    run_cmd('git add .')
+    run_cmd(f'git commit -m "auto commit {count}"')
+    run_cmd('git push origin')
+    count += 1
+
+    elapsed = time.time() - start
+    time.sleep(SLEEP_TIME)
