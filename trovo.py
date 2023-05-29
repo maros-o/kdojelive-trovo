@@ -74,12 +74,12 @@ def run_cmd(command):
                                 capture_output=True, text=True)
 
         if result.returncode == 0:
-            print(f"CMD OK ({command})")
+            print(f"cmd OK ({command})")
             if result.stdout:
                 print(" Output:")
                 print(' ' + result.stdout)
         else:
-            print(f"CMD FAIL ({command})")
+            print(f"cmd FAIL ({command})")
             if result.stderr:
                 print(" Error:")
                 print(' ' + result.stderr)
