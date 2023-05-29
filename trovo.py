@@ -76,12 +76,12 @@ def run_cmd(command):
         if result.returncode == 0:
             print(f"CMD OK ({command})")
             if result.stdout:
-                print("Output:")
+                print(" Output:")
                 print(' ' + result.stdout)
         else:
             print(f"CMD FAIL ({command})")
             if result.stderr:
-                print("Error:")
+                print(" Error:")
                 print(' ' + result.stderr)
 
     except Exception as e:
