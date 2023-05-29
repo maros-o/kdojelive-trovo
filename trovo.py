@@ -79,8 +79,10 @@ def run_cmd(command):
                 print("Output:")
                 print(result.stdout)
         else:
-            print("Command execution failed.")
-            if 
+            print(f"Command execution failed. ()")
+            if result.stderr:
+                print("Error:")
+                print(result.stderr)
 
     except Exception as e:
         print(f"An error occurred: {str(e)}")
