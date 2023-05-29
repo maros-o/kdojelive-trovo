@@ -1,6 +1,5 @@
 from playwright.sync_api import sync_playwright
 from selectolax.parser import HTMLParser
-import requests
 import re
 import json
 import time
@@ -82,4 +81,4 @@ while True:
     count += 1
 
     elapsed = time.time() - start
-    time.sleep(SLEEP_TIME)
+    time.sleep(SLEEP_TIME - elapsed)
