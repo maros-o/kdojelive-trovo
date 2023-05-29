@@ -74,7 +74,7 @@ def run_cmd(command):
                                 capture_output=True, text=True)
 
         if result.returncode == 0:
-            print(f"cmd OK ({command})")
+            print(f"cmd OKAY ({command})")
             if result.stdout:
                 print(" Output:")
                 print(' ' + result.stdout)
