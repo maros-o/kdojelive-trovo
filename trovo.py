@@ -50,35 +50,21 @@ def scrape_streams():
 
 def run_cmd(command):
     try:
-        result = subprocess.run(command, shell=True,
-                                capture_output=True, text=True)
-
-        if result.returncode == 0:
-            if result.stdout:
-                print(" Output:", result.stdout)
-        else:
-            if result.stderr:
-                print("Error:", result.stderr)
+        subprocess.run(command, shell=True, capture_output=True, text=True)
 
     except Exception as e:
         print(f"An error occurred: {str(e)}")
 
 
-count = 0
-
 while True:
     start = time.time()
-
     streams = scrape_streams()
-    print(f'streams updated {count}, {time.ctime()}')
 
     with open("streams.json", "w", encoding='utf-8') as f:
         json.dump(streams, f, indent=4)
 
     run_cmd('git add streams.json')
-    run_cmd(f'git commit -m "auto commit {count}"')
+    run_cmd(f'git commit -m "{time.ctime()}"')
     run_cmd('git push origin')
-    count += 1
 
-    elapsed = time.time() - start
-    time.sleep(SLEEP_TIME - elapsed)
+    time.sleep(SLEEP_TIME - (time.time() - start))
