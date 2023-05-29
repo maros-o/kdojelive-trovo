@@ -7,7 +7,7 @@ import time
 import subprocess
 
 
-SLEEP_TIME = 10
+SLEEP_TIME = 60 * 5
 
 
 def scrape_streams():
@@ -49,40 +49,17 @@ def scrape_streams():
         return streams
 
 
-def create_commit(repository, commit_message, access_token):
-    url = f"https://api.github.com/repos/{repository}/git/commits"
-    headers = {
-        "Authorization": f"Token {access_token}",
-        "Accept": "application/vnd.github.v3+json"
-    }
-    data = {
-        "message": commit_message,
-        "tree": "<commit SHA>",
-        "parents": ["<parent commit SHA>"]
-    }
-    response = requests.post(url, headers=headers, json=data)
-
-    if response.status_code == 201:
-        print("Commit created successfully.")
-    else:
-        print(f"Failed to create commit. Error: {response.text}")
-
-
 def run_cmd(command):
     try:
         result = subprocess.run(command, shell=True,
                                 capture_output=True, text=True)
 
         if result.returncode == 0:
-            print(f"cmd OK   ({command})")
             if result.stdout:
-                print(" Output:")
-                print(' ' + result.stdout)
+                print(" Output:", result.stdout)
         else:
-            print(f"cmd FAIL ({command})")
             if result.stderr:
-                print(" Error:")
-                print(' ' + result.stderr)
+                print("Error:", result.stderr)
 
     except Exception as e:
         print(f"An error occurred: {str(e)}")
@@ -94,12 +71,12 @@ while True:
     start = time.time()
 
     streams = scrape_streams()
-    print(f'streams updated {count}')
+    print(f'streams updated {count}, {time.ctime()}')
 
     with open("streams.json", "w", encoding='utf-8') as f:
         json.dump(streams, f, indent=4)
 
-    run_cmd('git add .')
+    run_cmd('git add streams.json')
     run_cmd(f'git commit -m "auto commit {count}"')
     run_cmd('git push origin')
     count += 1
