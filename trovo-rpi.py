@@ -5,8 +5,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selectolax.parser import HTMLParser
 import re
-import time
 import json
+import time
+import subprocess
 
 SLEEP_TIME = 60 * 5
 
