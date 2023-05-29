@@ -91,11 +91,11 @@ count = 0
 while True:
     start = time.time()
 
-    # streams = scrape_streams()
+    streams = scrape_streams()
     print(f'streams updated {count}')
 
-    # with open("streams.json", "w", encoding='utf-8') as f:
-    # json.dump(streams, f, indent=4)
+    with open("streams.json", "w", encoding='utf-8') as f:
+        json.dump(streams, f, indent=4)
 
     run_cmd('git add .')
     run_cmd(f'git commit -m "auto commit {count}"')
