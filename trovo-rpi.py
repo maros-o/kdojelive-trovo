@@ -59,6 +59,8 @@ while True:
         streams = scrape_streams()
         data = {"last_updated": int(time.time()),
                 "streams": streams}
+        
+        print(data)
 
         with open("streams.json", "w", encoding='utf-8') as f:
             json.dump(data, f, indent=4)
