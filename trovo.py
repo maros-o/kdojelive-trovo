@@ -61,7 +61,7 @@ while True:
 
     try:
         streams = scrape_streams()
-        data = {"last_updated": time.time(),
+        data = {"last_updated": int(time.time()),
                 "streams": streams}
 
         with open("streams.json", "w", encoding='utf-8') as f:
