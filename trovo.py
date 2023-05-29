@@ -58,10 +58,14 @@ def run_cmd(command):
 
 while True:
     start = time.time()
-    streams = scrape_streams()
 
-    with open("streams.json", "w", encoding='utf-8') as f:
-        json.dump(streams, f, indent=4)
+    try:
+        with open("streams.json", "w", encoding='utf-8') as f:
+            json.dump(scrape_streams(), f, indent=4)
+
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+        continue
 
     run_cmd('git add streams.json')
     run_cmd(f'git commit -m "{time.ctime()}"')
