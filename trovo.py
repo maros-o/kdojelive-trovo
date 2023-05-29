@@ -60,8 +60,12 @@ while True:
     start = time.time()
 
     try:
+        streams = scrape_streams()
+        data = {"last_updated": time.time(),
+                "streams": streams}
+
         with open("streams.json", "w", encoding='utf-8') as f:
-            json.dump(scrape_streams(), f, indent=4)
+            json.dump(data, f, indent=4)
 
     except Exception as e:
         print(f"An error occurred: {str(e)}")
