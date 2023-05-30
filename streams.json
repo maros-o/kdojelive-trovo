@@ -1,11 +1,21 @@
 {
-    "last_updated": 1685432295,
+    "last_updated": 1685432596,
     "streams": [
+        {
+            "user_name": "Unknown_Rusty",
+            "title": "18+ Za\u010d\u00ednaj\u00edc\u00ed vlk z wall street / CBD 420 ",
+            "viewer_count": 2,
+            "stream_thumbnail_url": "https://livecover.trovo.live/screenshot/73846_110824522_110824522-2023-05-30-15-42-47-1920x1080.jpg?imageView2/2/w/450/h/253/format/webp&max_age=31536000",
+            "platform": "trovo",
+            "category": "Others",
+            "stream_url": "https://trovo.live/s/Unknown_Rusty/221649044",
+            "user_thumbnail_url": "https://headicon.trovo.live/user/jigjwbqaaaaaafjjxpooqeh5cy.png?ext=png&t=0&imageView2/1/w/64/h/64/format/webp|imageMogr2/ignore-error/1&max_age=31536000"
+        },
         {
             "user_name": "iNemes",
             "title": "server: https://arcaneworld.net/",
             "viewer_count": 0,
-            "stream_thumbnail_url": "https://livecover.trovo.live/screenshot/73846_112864343_112864343-2023-05-30-15-37-44-1920x1080.jpg?imageView2/2/w/450/h/253/format/webp&max_age=31536000",
+            "stream_thumbnail_url": "https://livecover.trovo.live/screenshot/73846_112864343_112864343-2023-05-30-15-42-44-1920x1080.jpg?imageView2/2/w/450/h/253/format/webp&max_age=31536000",
             "platform": "trovo",
             "category": "Lineage II",
             "stream_url": "https://trovo.live/s/iNemes/225728686",
