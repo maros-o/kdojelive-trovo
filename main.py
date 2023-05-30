@@ -53,15 +53,9 @@ def scrape_streams():
 
 def run_cmd(command):
     try:
-        result = subprocess.run(command, shell=True,
-                                capture_output=True, text=True)
+        result = subprocess.run(command, shell=True, capture_output=True, text=True)
 
-        if result.returncode == 0:
-            print(f"Command executed successfully. ({command})")
-            if result.stdout:
-                print("Output:")
-                print(result.stdout)
-        else:
+        if result.returncode != 0:
             print(f"Command execution failed. ({command})")
             if result.stderr:
                 print("Error:")
@@ -78,8 +72,6 @@ while True:
         streams = scrape_streams()
         data = {"last_updated": int(time.time()),
                 "streams": streams}
-
-        print(f'data updated successfully {time.ctime()}')
 
         with open("streams.json", "w", encoding='utf-8') as f:
             json.dump(data, f, indent=4)
