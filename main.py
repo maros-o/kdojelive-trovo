@@ -57,12 +57,12 @@ def run_cmd(command):
                                 capture_output=True, text=True)
 
         if result.returncode == 0:
-            print("Command executed successfully.")
+            print(f"Command executed successfully. ({command})")
             if result.stdout:
                 print("Output:")
                 print(result.stdout)
         else:
-            print("Command execution failed.")
+            print(f"Command execution failed. ({command})")
             if result.stderr:
                 print("Error:")
                 print(result.stderr)
